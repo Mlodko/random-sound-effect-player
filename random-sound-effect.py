@@ -102,11 +102,11 @@ def main():
     players = []
 
     # Firstly play snapchat
-    player = AudioPlayer('https://www.youtube.com/watch?v=yuE5AxKoDy4')
+    player = AudioPlayer('https://www.youtube.com/watch?v=fx3gvoCTQkw')
     player.start()
     players.append(player)
     current_time = time.strftime("%Y/%m/%d %H:%M:%S")
-    print(f'f"[{current_time}] Now playing:    Snapchat"')
+    print(f'f"[{current_time}] Now playing:    Snapchat')
     time.sleep(random.randint(LOWER_BOUND_BETWEEN, HIGHER_BOUND_BETWEEN))
 
     try:
