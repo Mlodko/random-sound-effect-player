@@ -13,7 +13,6 @@ class AudioPlayer(threading.Thread):
         self.daemon = True
 
     def run(self):
-        print("run function ran")
         try:
             yt = YouTube(self.url)
             stream = yt.streams.filter(only_audio=True).first()
@@ -51,7 +50,7 @@ def main():
         'Knock':                                'https://www.youtube.com/watch?v=iX14fEzas8s',
         'What the dog doin':                    'https://www.youtube.com/watch?v=bmDdHk_X864',
         'Bite of 87':                           'https://www.youtube.com/watch?v=53ChkkMu39c',
-        'Miguel':                               'https://www.youtube.com/watch?v=mgPuMj8JgfY',
+        'Miguel':                               'https://www.youtube.com/watch?v=ljoj8qTtSVo',
         'Wii Sports Aww':                       'https://www.youtube.com/watch?v=hIa0nm0uNkY',
         'Sicko mode sound':                     'https://www.youtube.com/watch?v=bNOj6kC6TyQ',
         'Glass bottle':                         'https://www.youtube.com/watch?v=UZoOUG8ytV8',
@@ -106,7 +105,7 @@ def main():
     player.start()
     players.append(player)
     current_time = time.strftime("%Y/%m/%d %H:%M:%S")
-    print(f'f"[{current_time}] Now playing:    Snapchat')
+    print(f'[{current_time}] Now playing:    Snapchat')
     time.sleep(random.randint(LOWER_BOUND_BETWEEN, HIGHER_BOUND_BETWEEN))
 
     try:
@@ -116,9 +115,12 @@ def main():
                 title = must_haves[title_index]
                 print(f'Chosen from must_haves: {title}')
                 must_haves.pop(title_index)
-            else:
-                title = random.choice(video_urls.keys())
+            elif video_urls:
+                title = random.choice(list(video_urls.keys()))
                 print(f'Chosen from regular list: {title}')
+            else:
+                time.sleep(120)
+                continue
 
             random_url = video_urls[title]
             video_urls.pop(title)
